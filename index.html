@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html ng-app="BookStore">
+	<head ng-controller="HomeControllers">
+		<title>{{titles.index}}</title>
+		<script type="text/javascript" src="js/vendor/angular.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+		<link rel="stylesheet" href="css/styles.css">
+	</head>
+<body>
+	<!--Nav section-->
+    <nav class="navbar navbar-inverse navbar-static-top">
+		<div class="container-fluid">
+		   	<ul class="nav navbar-nav">
+				<div class="navbar-header">
+			      <a class="navbar-brand" href="#">Shonen Bros &copy;</a>
+			    </div>
+		        <li><a href="#">Home</a></li>
+		        <li><a href="#">About us</a></li>
+		        <li><a href="#">Blog</a></li>
+		        <li><a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+		    </ul>
+	      	<ul class="nav navbar-nav navbar-right">
+		    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		    </ul>
+		</div>
+	</nav>
+
+	<div class="jumbotron">
+	  <h1>Welcome to Shonen Bros</h1>
+	  <p><a class="btn btn-primary btn-lg" href="#" role="button">Register here</a></p>
+	</div>
+
+	<!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog" ng-controller="HomeControllers">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    	<div class="modal-content">
+	    	  <div class="modal-header">
+	    	    <button type="button" class="close" data-dismiss="modal">&times;</button>
+	    	    <h4 class="modal-title">Shopping Cart</h4>
+	    	  </div>
+	    	  <div class="modal-body">
+	    	    	<div ng-repeat="product in products"> 
+	    			            <p>{{ product.name }}</p> 
+	    			            <p>{{ product.price | currency }}</p> 
+	    	      	</div> 
+	    	  </div> 
+	    	</div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+    
+
+    <div class="main" ng-controller="HomeControllers">
+      <div class="container">
+        <div ng-repeat="product in products" class="col-md-6"> 
+          <div class="thumbnail"> 
+            <img ng-src="{{ product.cover }}">
+            <p class="title">{{ product.name }}</p> 
+            <p class="price">{{ product.price | currency }}</p> 
+            <p class="date">{{ product.pubdate | date }}</p> 
+            <div class="rating"> 
+            	<h4>Ratings</h4>
+              <p class="likes" ng-click="plusOne($index)">+{{ product.likes }}</p> 
+              <p class="likes" ng-click="minusOne($index)">-{{ product.dislikes }}</p>
+            </div>
+          </div> 
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <h2>Also Available on Apple and Android.</h2>
+        <img src="https://static1.squarespace.com/static/52ea0045e4b07a9b986d9c33/t/52f7b45de4b0b3416ffbe769/1391965279156/Download_on_iBooks_Badge_US-UK_110x40_090513.png" width="120px" />
+        <img src="https://s3.amazonaws.com/codecademy-content/projects/shutterbugg/google-play.png" width="110px" />
+      </div>
+    </div>
+	
+	<!-- Scripts -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Modules -->
+    <script src="js/app.js"></script>
+
+    <!-- Controllers -->
+    <script src="js/controllers/HomeControllers.js"></script>
+  </body>
+</html>
